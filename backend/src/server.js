@@ -1,0 +1,25 @@
+require("dotenv").config();
+
+const { appConfig } = require("./config/app.config");
+
+const express = require("express");
+const connectDB = require("./config/db");
+
+const app = express();
+
+const ALLOWED_CORS = appConfig.allowedCors;
+const PORT = appConfig.port;
+
+app.use(express.json());
+
+connectDB();
+
+const prefix = "/api/v1/vivendi";
+
+app.listen(PORT, () => {
+  console.log(
+    "Servidor iniciado correctamente:",
+    `http://localhost:${PORT}${prefix}`,
+    ALLOWED_CORS
+  );
+});
