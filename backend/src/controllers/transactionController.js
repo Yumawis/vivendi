@@ -60,3 +60,5 @@ const addTransaction = async (req, res) => {
     return res.status(420).json(response);
   }
 };
+
+module.exports = { addTransaction };
