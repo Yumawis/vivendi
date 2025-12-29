@@ -3,6 +3,7 @@ require("dotenv").config();
 const { appConfig } = require("./config/app.config");
 
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
@@ -14,6 +15,13 @@ const app = express();
 
 const ALLOWED_CORS = appConfig.allowedCors;
 const PORT = appConfig.port;
+
+app.use(
+  cors({
+    origin: ALLOWED_CORS,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
